@@ -62,7 +62,7 @@ const Navbar = () => {
                 </ButtonGroup>
                 <HStack spacing="3">
                   <Link to="/signin">
-                    <Button variant="ghost">Sign in</Button>
+                    <Button variant="primary">Sign in</Button>
                   </Link>
                 </HStack>
               </Flex>
