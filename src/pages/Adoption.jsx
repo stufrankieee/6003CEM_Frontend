@@ -1,41 +1,38 @@
-import { Heading, Text, Stack, Container } from "@chakra-ui/react";
+import {
+  Heading,
+  Text,
+  HStack,
+  Stack,
+  SkeletonCircle,
+  SkeletonText,
+  Box,
+  Input,
+  Container,
+  SimpleGrid,
+} from "@chakra-ui/react";
 import CardList from "../components/Card/CardList";
 import { getPets } from "../apis/petApi";
 import { useQuery } from "react-query";
+import { useState } from "react";
 
 const Adoption = () => {
   const isLoggedIn = false;
-
+  const search = () => {
+    setTime(new Date());
+    petRefetch();
+  };
   // Get All Pet API
-  const searchBarCurrent = {};
-
+  const [petNameSearch, setpetNameSearch] = useState("");
+  const [breedSearch, setbreedSearch] = useState("");
+  const [time, setTime] = useState("");
   const {
     isSuccess: petIsSuccess,
     data: petData,
     refetch: petRefetch,
   } = useQuery({
-    queryKey: [
-      "pets",
-      searchBarCurrent.petName,
-      searchBarCurrent.dateOfBirth,
-      searchBarCurrent.breed,
-      searchBarCurrent.microchipNo,
-      searchBarCurrent.gender,
-      searchBarCurrent.intake,
-      searchBarCurrent.remark,
-      searchBarCurrent.introduction,
-    ],
+    queryKey: ["pets", time],
     queryFn: async () => {
-      const pets = await getPets(
-        searchBarCurrent.petName,
-        searchBarCurrent.dateOfBirth,
-        searchBarCurrent.breed,
-        searchBarCurrent.microchipNo,
-        searchBarCurrent.gender,
-        searchBarCurrent.intake,
-        searchBarCurrent.remark,
-        searchBarCurrent.introduction
-      );
+      const pets = await getPets(petNameSearch, breedSearch);
       console.log(pets);
 
       return pets;
@@ -43,8 +40,19 @@ const Adoption = () => {
     },
   });
 
-  if (petData == null) return "";
-  const petCardItems = petData.map((x) => (
+  // Dropdown Menu
+
+  // if (petData == null)
+  //   return (
+  //     <Box padding="6" boxShadow="lg" bg="white">
+  //       <SkeletonCircle size="10" />
+  //       <SkeletonText mt="4" noOfLines={4} spacing="4" skeletonHeight="2" />
+  //     </Box>
+  //   );
+  const petCardItems =
+    petData == null ? [] : petData.map((x) => <CardList key={x.id} pet={x} />);
+
+  return (
     <>
       <Container
         py={{
@@ -62,12 +70,27 @@ const Adoption = () => {
             wait in the center to find a new home!
           </Text>
         </Stack>
+        <HStack spacing={3}>
+          <Input
+            variant="outline"
+            placeholder="Cat Name"
+            value={petNameSearch}
+            onChange={(e) => setpetNameSearch(e.target.value)}
+          />
+          <Input
+            variant="outline"
+            placeholder="Breed"
+            value={breedSearch}
+            onChange={(e) => setbreedSearch(e.target.value)}
+          />
+        </HStack>
+        <button onClick={search}>search</button>
+        <SimpleGrid columns={5} spacing={10}>
+          {petCardItems}
+        </SimpleGrid>
       </Container>
-      <CardList key={x.id} pet={x} />
     </>
-  ));
-
-  return petCardItems;
+  );
 };
 
 export default Adoption;

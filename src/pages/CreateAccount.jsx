@@ -12,7 +12,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import { Logo } from "./../Logo";
+import { Logo } from "../Logo";
 import { OAuthButtonGroup } from "./OAuthButtonGroup";
 import { PasswordField } from "./PasswordField";
 import axios from "axios";
@@ -24,8 +24,8 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const nav = useNavigate();
 
-  const signUp = async () => {
-    nav("/createAccount");
+  const signIn = async () => {
+    nav("/signin");
   };
 
   const signin = async () => {
@@ -66,12 +66,12 @@ const Login = () => {
                 md: "sm",
               }}
             >
-              Log in to your account
+              Create account
             </Heading>
             <HStack spacing="1" justify="center">
-              <Text color="muted">Don't have an account?</Text>
-              <Button variant="link" colorScheme="blue" onClick={signUp}>
-                Sign up
+              <Text color="muted">Already have an account?</Text>
+              <Button variant="link" colorScheme="blue" onClick={signIn}>
+                Log In
               </Button>
             </HStack>
           </Stack>

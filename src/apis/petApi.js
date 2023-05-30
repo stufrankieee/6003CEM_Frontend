@@ -7,26 +7,11 @@ export const getPetById = async (petId) => {
   return data;
 };
 
-export const getPets = async (
-  petName,
-  dateOfBirth,
-  breed,
-  microchipNo,
-  gender,
-  intake,
-  remark,
-  introduction
-) => {
+export const getPets = async (petName, breed) => {
   const { data } = await axios.get(`${host}/pets`, {
     params: {
       petName,
-      dateOfBirth,
       breed,
-      microchipNo,
-      gender,
-      intake,
-      remark,
-      introduction,
     },
   });
 

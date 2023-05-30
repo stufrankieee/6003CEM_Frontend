@@ -11,13 +11,15 @@ import {
 } from "@chakra-ui/react";
 import { FavouriteButton } from "./FavouriteButton";
 import { useNavigate, useParams } from "react-router";
+import { useEffect, useState } from "react";
+import { images } from "./_data";
 
 export const ProductCard = (props) => {
   const nav = useNavigate();
   const { pet, product, rootProps } = props;
-  const { name, imageUrl } = product;
+  // const { name, imageUrl } = product;
   const { id } = useParams();
-
+  const [image, setImage] = useState("");
   const editPet = async () => {
     nav(`/edit/${pet.id}`);
   };
@@ -28,24 +30,34 @@ export const ProductCard = (props) => {
     nav("/adoption");
   };
 
+  useEffect(() => {
+    if (pet) {
+      console.log(pet);
+      const imgs = images.filter((x) => x.id == pet.id);
+
+      if (imgs != null && imgs.length > 0) {
+        setImage(imgs[0]);
+      }
+    }
+  }, [pet]);
+
   return (
     <Stack spacing={{ base: "4", md: "5" }} {...rootProps}>
       <Box position="relative">
         <AspectRatio ratio={4 / 3}>
           <Image
-            src={imageUrl}
-            alt={name}
+            src={image}
             draggable="false"
             fallback={<Skeleton />}
             borderRadius={{ base: "md", md: "xl" }}
           />
         </AspectRatio>
-        <FavouriteButton
+        {/* <FavouriteButton
           position="absolute"
           top="4"
           right="4"
           aria-label={`Add ${name} to your favourites`}
-        />
+        /> */}
       </Box>
       <Stack>
         <Stack spacing="1">

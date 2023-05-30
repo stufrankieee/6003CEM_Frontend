@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { Logo } from "../Logo";
 import { theme as proTheme } from "@chakra-ui/pro-theme";
 import { extendTheme, theme as baseTheme } from "@chakra-ui/react";
+import { useNavigate } from "react-router";
 
 export const theme = extendTheme(
   {
@@ -23,6 +24,12 @@ export const theme = extendTheme(
 );
 
 const Navbar = () => {
+  const nav = useNavigate();
+
+  const createPetProfile = async () => {
+    nav("/create");
+  };
+
   const isDesktop = useBreakpointValue({
     base: false,
     lg: true,
@@ -55,6 +62,9 @@ const Navbar = () => {
                   ))} */}
                 </ButtonGroup>
                 <HStack spacing="3">
+                  <Button variant="outline" onClick={createPetProfile}>
+                    Create Pet Profile
+                  </Button>
                   <Link to="/signin">
                     <Button variant="primary">Sign in</Button>
                   </Link>
