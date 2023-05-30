@@ -1,5 +1,10 @@
 import { Button, ButtonGroup, VisuallyHidden } from "@chakra-ui/react";
 import { GitHubIcon, GoogleIcon, TwitterIcon } from "./ProviderIcons";
+
+const goToGitHubProject = async () => {
+  window.location.href = `https://github.com/stufrankieee`;
+};
+
 const providers = [
   {
     name: "Google",
@@ -18,7 +23,7 @@ const providers = [
 export const OAuthButtonGroup = () => (
   <ButtonGroup variant="outline" spacing="4" width="full">
     {providers.map(({ name, icon }) => (
-      <Button key={name} width="full">
+      <Button key={name} width="full" onClick={goToGitHubProject}>
         <VisuallyHidden>Sign in with {name}</VisuallyHidden>
         {icon}
       </Button>

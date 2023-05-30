@@ -1,7 +1,16 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router";
-import { useSearchParams } from "react-router-dom";
+import {
+  Box,
+  Container,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  Stack,
+  Button,
+} from "@chakra-ui/react";
+import { useNavigate, useParams } from "react-router";
 
 const EditPet = () => {
   const nav = useNavigate();
@@ -42,81 +51,140 @@ const EditPet = () => {
 
     nav("/adoption");
   };
+
   return (
     <>
-      <div>
-        <span>petName</span>
-        <input
-          type="text"
-          value={petName}
-          onChange={(e) => setpetName(e.target.value)}
-        />
-      </div>
+      <Container
+        maxW="lg"
+        py={{
+          base: "12",
+          md: "24",
+        }}
+        px={{
+          base: "0",
+          sm: "8",
+        }}
+      >
+        <Stack spacing="8">
+          <Stack
+            spacing={{
+              base: "2",
+              md: "3",
+            }}
+            textAlign="center"
+          >
+            <Heading
+              size={{
+                base: "xs",
+                md: "sm",
+              }}
+            >
+              Would you like to update pet profile?
+            </Heading>
+          </Stack>
+          <Box
+            py={{
+              base: "0",
+              sm: "8",
+            }}
+            px={{
+              base: "4",
+              sm: "10",
+            }}
+            bg={{
+              base: "transparent",
+              sm: "bg-surface",
+            }}
+            boxShadow={{
+              base: "none",
+              sm: "md",
+            }}
+            borderRadius={{
+              base: "none",
+              sm: "xl",
+            }}
+          >
+            <Stack spacing="5">
+              <FormControl>
+                <FormLabel>Pet Name:</FormLabel>
+                <Input
+                  type="text"
+                  value={petName}
+                  onChange={(e) => setpetName(e.target.value)}
+                />
+              </FormControl>
 
-      <div>
-        <span>dateOfBirth</span>
-        <input
-          type="text"
-          value={dateOfBirth}
-          onChange={(e) => setdateOfBirth(e.target.value)}
-        />
-      </div>
+              <FormControl>
+                <FormLabel>Birthday:</FormLabel>
+                <Input
+                  type="text"
+                  value={dateOfBirth}
+                  onChange={(e) => setdateOfBirth(e.target.value)}
+                />
+              </FormControl>
 
-      <div>
-        <span>breed</span>
-        <input
-          type="text"
-          value={breed}
-          onChange={(e) => setbreed(e.target.value)}
-        />
-      </div>
+              <FormControl>
+                <FormLabel>Breed:</FormLabel>
+                <Input
+                  type="text"
+                  value={breed}
+                  onChange={(e) => setbreed(e.target.value)}
+                />
+              </FormControl>
 
-      <div>
-        <span>microchipNo</span>
-        <input
-          type="text"
-          value={microchipNo}
-          onChange={(e) => setmicrochipNo(e.target.value)}
-        />
-      </div>
+              <FormControl>
+                <FormLabel>Microchip No.:</FormLabel>
+                <Input
+                  type="text"
+                  value={microchipNo}
+                  onChange={(e) => setmicrochipNo(e.target.value)}
+                />
+              </FormControl>
 
-      <div>
-        <span>gender</span>
-        <input
-          type="text"
-          value={gender}
-          onChange={(e) => setgender(e.target.value)}
-        />
-      </div>
+              <FormControl>
+                <FormLabel>Gender:</FormLabel>
+                <Input
+                  type="text"
+                  value={gender}
+                  onChange={(e) => setgender(e.target.value)}
+                />
+              </FormControl>
 
-      <div>
-        <span>intake</span>
-        <input
-          type="text"
-          value={intake}
-          onChange={(e) => setintake(e.target.value)}
-        />
-      </div>
+              <FormControl>
+                <FormLabel>Intake:</FormLabel>
+                <Input
+                  type="text"
+                  value={intake}
+                  onChange={(e) => setintake(e.target.value)}
+                />
+              </FormControl>
 
-      <div>
-        <span>remark</span>
-        <input
-          type="text"
-          value={remark}
-          onChange={(e) => setremark(e.target.value)}
-        />
-      </div>
+              <FormControl>
+                <FormLabel>Remark:</FormLabel>
+                <Input
+                  type="text"
+                  value={remark}
+                  onChange={(e) => setremark(e.target.value)}
+                />
+              </FormControl>
 
-      <div>
-        <span>introduction</span>
-        <input
-          type="text"
-          value={introduction}
-          onChange={(e) => setintroduction(e.target.value)}
-        />
-      </div>
-
-      <button onClick={submit}>submit</button>
+              <FormControl>
+                <FormLabel>Introduction:</FormLabel>
+                <Input
+                  type="text"
+                  value={introduction}
+                  onChange={(e) => setintroduction(e.target.value)}
+                />
+              </FormControl>
+              <Stack spacing="6">
+                <Button variant="primary" onClick={submit}>
+                  Update Cat Profile
+                </Button>
+              </Stack>
+            </Stack>
+          </Box>
+        </Stack>
+      </Container>
     </>
   );
 };

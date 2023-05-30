@@ -48,13 +48,7 @@ const Navbar = () => {
               <Flex justify="space-between" flex="1">
                 <ButtonGroup variant="link" spacing="8">
                   <Link to="/adoption">
-                    <Button>Adoption</Button>
-                  </Link>
-                  <Link to="/course">
-                    <Button>Courses</Button>
-                  </Link>
-                  <Link to="/donate">
-                    <Button>Donate</Button>
+                    <Button variant="ghost">Adoption</Button>
                   </Link>
                   {/* {["Adoption", "Courses", "Donate", "e-Shop"].map((item) => (
                     <Button key={item}>{item}</Button>

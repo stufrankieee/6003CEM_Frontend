@@ -7,11 +7,7 @@ const Adoption = () => {
   const isLoggedIn = false;
 
   // Get All Pet API
-  const pets = {};
   const searchBarCurrent = {};
-
-  // const pets = useSelector(selectFavouritedPets);
-  // const searchBarCurrent = useSelector(selectSearchCurrentValue);
 
   const {
     isSuccess: petIsSuccess,
@@ -47,36 +43,8 @@ const Adoption = () => {
     },
   });
 
-  // if (petIsSuccess) {
-  //   return JSON.stringify(petData);
-  // } else {
-  //   return "";
-  // }
-
-  // let petCardItems = [];
-
-  // if (petIsSuccess) {
-  //   if (isLoggedIn) {
-  //     petCardItems = pets.map((x) => (
-  //       <CardList
-  //         key={x.id}
-  //         pet={x}
-  //         // onFavourite={onFavourite}
-  //       />
-  //     ));
-  //   } else {
-  //     petCardItems = pets.map((x) => <CardList key={x.id} pet={x} />);
-  //   }
-  // } else {
-  //   petCardItems = "Loading...";
-  // }
-
   if (petData == null) return "";
-  const petCardItems = petData.map((x) => <CardList key={x.id} pet={x} />);
-
-  return petCardItems;
-  // Generate component with fill up the data from API response
-  return (
+  const petCardItems = petData.map((x) => (
     <>
       <Container
         py={{
@@ -95,9 +63,11 @@ const Adoption = () => {
           </Text>
         </Stack>
       </Container>
-      <CardList />
+      <CardList key={x.id} pet={x} />
     </>
-  );
+  ));
+
+  return petCardItems;
 };
 
 export default Adoption;

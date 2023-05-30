@@ -4,55 +4,35 @@ import { products } from "./_data";
 import { ProductGrid } from "./ProductGrid";
 
 export const CardList = ({ pet, actions }) => {
-  // if (pet == null) ? () : (<Box
-  //   maxW="7xl"
-  //   mx="auto"
-  //   px={{
-  //     base: "4",
-  //     md: "8",
-  //     lg: "12",
-  //   }}
-  //   py={{
-  //     base: "6",
-  //     md: "8",
-  //     lg: "12",
-  //   }}
-  // >
-  //   <ProductGrid>
-  //     {products.map((product) => (
-  //       <ProductCard key={product.id} product={product} />
-  //     ))}
-  //   </ProductGrid>
-  // </Box>)
-
   if (pet == null) return "";
 
   return (
     <Box
       maxW="7xl"
       mx="auto"
-      px={{
-        base: "4",
-        md: "8",
-        lg: "12",
-      }}
-      py={{
-        base: "6",
-        md: "8",
-        lg: "12",
-      }}
+      px={{ base: "4", md: "8", lg: "12" }}
+      py={{ base: "6", md: "8", lg: "12" }}
     >
-      <ProductCard
-        pet={pet}
-        key={products[0].id}
-        product={products[0]}
-      ></ProductCard>
-      {/* <ProductGrid>
+      <ProductGrid>
         {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <ProductCard pet={pet} key={product.id} product={product} />
         ))}
-      </ProductGrid> */}
+      </ProductGrid>
     </Box>
+    // <Box
+    //   maxW="7xl"
+    //   mx="auto"
+    //   px={{ base: "4", md: "8", lg: "12" }}
+    //   py={{ base: "6", md: "8", lg: "12" }}
+    // >
+    //   <ProductGrid>
+    //     <ProductCard
+    //       pet={pet}
+    //       key={products[0].id}
+    //       product={products[0]}
+    //     ></ProductCard>
+    //   </ProductGrid>
+    // </Box>
   );
 };
 
