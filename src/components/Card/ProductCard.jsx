@@ -16,8 +16,7 @@ import { images } from "./_data";
 
 export const ProductCard = (props) => {
   const nav = useNavigate();
-  const { pet, product, rootProps } = props;
-  // const { name, imageUrl } = product;
+  const { pet, rootProps } = props;
   const { id } = useParams();
   const [image, setImage] = useState("");
   const editPet = async () => {
@@ -26,8 +25,7 @@ export const ProductCard = (props) => {
 
   const deletePet = async () => {
     const result = await axios.delete(`http://localhost:3000/pets/${pet.id}`);
-
-    nav("/adoption");
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -36,7 +34,7 @@ export const ProductCard = (props) => {
       const imgs = images.filter((x) => x.id == pet.id);
 
       if (imgs != null && imgs.length > 0) {
-        setImage(imgs[0]);
+        setImage(imgs[0].imageUrl);
       }
     }
   }, [pet]);
@@ -52,12 +50,12 @@ export const ProductCard = (props) => {
             borderRadius={{ base: "md", md: "xl" }}
           />
         </AspectRatio>
-        {/* <FavouriteButton
+        <FavouriteButton
           position="absolute"
           top="4"
           right="4"
-          aria-label={`Add ${name} to your favourites`}
-        /> */}
+          aria-label={`Add ${pet.petName} to your favourites`}
+        />
       </Box>
       <Stack>
         <Stack spacing="1">

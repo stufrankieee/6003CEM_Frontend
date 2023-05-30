@@ -6,6 +6,7 @@ import {
   SkeletonCircle,
   SkeletonText,
   Box,
+  Button,
   Input,
   Container,
   SimpleGrid,
@@ -36,7 +37,6 @@ const Adoption = () => {
       console.log(pets);
 
       return pets;
-      // dispatch(setPets(pets));
     },
   });
 
@@ -70,7 +70,7 @@ const Adoption = () => {
             wait in the center to find a new home!
           </Text>
         </Stack>
-        <HStack spacing={3}>
+        <HStack spacing={3} marginTop={5} marginBottom={5}>
           <Input
             variant="outline"
             placeholder="Cat Name"
@@ -83,8 +83,10 @@ const Adoption = () => {
             value={breedSearch}
             onChange={(e) => setbreedSearch(e.target.value)}
           />
+          <Button variant="primary" onClick={search} minW={200}>
+            Search
+          </Button>
         </HStack>
-        <button onClick={search}>search</button>
         <SimpleGrid columns={5} spacing={10}>
           {petCardItems}
         </SimpleGrid>

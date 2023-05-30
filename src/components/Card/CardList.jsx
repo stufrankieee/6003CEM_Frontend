@@ -9,11 +9,6 @@ export const CardList = ({ pet, actions }) => {
   return (
     <Box>
       <ProductCard pet={pet} key={pet.id} />
-      {/* <ProductGrid>
-        {images.map((product) => (
-          <ProductCard pet={pet} key={product.id} product={product} />
-        ))}
-      </ProductGrid> */}
     </Box>
   );
 };
